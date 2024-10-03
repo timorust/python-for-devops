@@ -6,7 +6,7 @@ Repository for Python DevOps work
 ## Create a project scaffold
 
 Create development environment that is cloud-based:
-### Coloab Notebook
+### Colab Notebook
 ### Github Codespaces  
 ### AWS CloudShell
 ### AWS Cloud9
