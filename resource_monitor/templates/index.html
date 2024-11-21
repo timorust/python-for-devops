@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Real-Time Resource Monitor</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				text-align: center;
+				margin-top: 50px;
+			}
+			.resource {
+				margin: 20px 0;
+				font-size: 1.5em;
+			}
+			.value {
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>System Resource Monitor</h1>
+		<div class="resource">
+			CPU Usage: <span id="cpu" class="value">Loading...</span>%
+		</div>
+		<div class="resource">
+			RAM Usage: <span id="ram" class="value">Loading...</span>%
+		</div>
+
+		<script>
+			async function fetchData() {
+				try {
+					const response = await fetch('/api/resources')
+					const data = await response.json()
+					document.getElementById('cpu').innerText = data.cpu
+					document.getElementById('ram').innerText = data.ram
+				} catch (error) {
+					console.error('Error fetching data:', error)
+				}
+			}
+
+			setInterval(fetchData, 1000)
+
+			fetchData()
+		</script>
+	</body>
+</html>
