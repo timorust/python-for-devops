@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Real-Time Voting</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
+		<script>
+			var socket = io.connect('http://' + document.domain + ':' + location.port)
+
+			function vote(option) {
+				socket.emit('vote', { option: option })
+			}
+
+			socket.on('update', function (data) {
+				var votes = data.votes
+				document.getElementById('votes').innerHTML = `
+                Option 1: ${votes['Option 1']}<br>
+                Option 2: ${votes['Option 2']}<br>
+                Option 3: ${votes['Option 3']}
+            `
+			})
+		</script>
+	</head>
+	<body>
+		<h1>Real-Time Voting System</h1>
+		<button onclick="vote('Option 1')">Vote for Option 1</button>
+		<button onclick="vote('Option 2')">Vote for Option 2</button>
+		<button onclick="vote('Option 3')">Vote for Option 3</button>
+
+		<h2>Current Results:</h2>
+		<div id="votes">
+			Option 1: 0<br />
+			Option 2: 0<br />
+			Option 3: 0
+		</div>
+	</body>
+</html>
