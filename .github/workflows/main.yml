@@ -10,8 +10,6 @@ jobs:
         run: git clone https://github.com/berezovsky13/nodejs.git  
       - name: Print Hello World
         run: echo "Hello, GitHub Actions!"  
-      - name: Ping Google
-        run: ping -c 4 google.com
       - name: List files
         run: ls -la
 
