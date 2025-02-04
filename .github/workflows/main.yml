@@ -12,4 +12,7 @@ jobs:
         run: echo "Hello, GitHub Actions!"  
       - name: Ping Google
         run: ping -c 4 google.com
+      - name: List files
+        run: ls -la
+
   
